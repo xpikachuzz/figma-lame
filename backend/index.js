@@ -19,6 +19,10 @@ app.use(cors({
   origin: '*' // or use a wildcard '*' to allow all origins
 }));
 
+app.get("/", (req, res) => {
+  res.json("BOKEY")
+})
+
 
 io.on("connect", (socket) => {
   console.log("connect")

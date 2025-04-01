@@ -29,6 +29,15 @@ const Canvas = () => {
       setLines([])
     })
 
+    // Get intial lines:
+    fetch("http://figma-lame-production.up.railway.app")
+      .then(
+        data => data.json()
+      )
+      .then(
+        res => console.log(res)
+      )
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       socket.emit("leave_canvas", "canvas:"+1)
