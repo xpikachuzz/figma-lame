@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();    // initiate express.
+const cors = require('cors');
 
 // redis
 // const redisClient = require("./redis")
