@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Arrow {
+    id            Int                   @id
+    x             Int
+    y             Int
+    points        Int[]
+    color         String
+    strokeWidth   Int
+    canvasStage   CanvasStage           @relation(fields: [canvasStageId], references: [id])
+    canvasStageId Int
+}
+
+model Brush {
+    id            Int                   @id
+    points        Int[]
+    color         String
+    strokeWidth   Int
+    canvasStage   CanvasStage           @relation(fields: [canvasStageId], references: [id])
+    canvasStageId Int
+}
+
+model Eraser {
+    id            Int                   @id
+    points        Int[]
+    color         String
+    strokeWidth   Int
+    canvasStage   CanvasStage           @relation(fields: [canvasStageId], references: [id])
+    canvasStageId Int
+}
+
+model CanvasStage {
+  id              Int                   @id @default(autoincrement())
+  width           Int
+  height          Int
+  arrows          Arrow[]
+  brushs          Brush[]
+  erasers         Eraser[]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
