@@ -2,7 +2,7 @@ import {io} from "socket.io-client"
 
 
 // 1st arg is backend url.
-const socket = new io("http://localhost:3000", {
+const socket = new io("http://figma-lame-production.up.railway.app", {
   // to connect manually only
   autoConnect: false,
   // Send frontend cookies to client

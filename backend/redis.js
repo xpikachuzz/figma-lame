@@ -1,6 +1,6 @@
 const { createClient } = require('redis')
 
-const redisClient = new createClient()
+// const redisClient = new createClient()
 
 
 

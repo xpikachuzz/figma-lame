@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();    // initiate express.
 
 // redis
-const redisClient = require("./redis")
+// const redisClient = require("./redis")
 const { Server } = require("socket.io");
 
 const server = require("http").createServer(app);
@@ -11,7 +11,7 @@ const io = new Server(server, {
     cors: { origin:"http://localhost:5173", credentials: true },
 });
 
-redisClient.connect().catch(console.error)
+// redisClient.connect().catch(console.error)
 
 app.use(express.json());
 
