@@ -5,6 +5,11 @@ const cors = require('cors');
 // redis
 // const redisClient = require("./redis")
 const { Server } = require("socket.io");
+const { PrismaClient } = require("@prisma/client");
+
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+
 
 const server = require("http").createServer(app);
 
@@ -34,11 +39,45 @@ io.on("connect", (socket) => {
   })
   socket.on("new_brush", (line) => {
     socket.to("canvas:"+1).emit("draw", line)
-    // Save it to the canvas
+    // Save it to the psql
+    if (line.tool == "pen") {
+      prisma.brush.create({
+        data: {
+          id: line.id,
+          points: line.points,
+          color: line.color,
+          strokeWidth: line.size,
+          canvasStageId: 1
+        }
+      })
+    } if (line.tool == "arrow") {
+      prisma.brush.create({
+        data: {
+          id: line.id,
+          x: line.points[0],
+          y: line.points[1],
+          points: line.points,
+          color: line.color,
+          strokeWidth: line.size,
+          canvasStageId: 1
+        }
+      })
+    } if (line.tool == "eraser") {
+      prisma.eraser.create({
+        data: {
+          id: line.id,
+          points: line.points,
+          color: line.color,
+          strokeWidth: line.size,
+          canvasStageId: 1
+        }
+      })
+    }
   })
   socket.on("delete", (id) => {
     socket.to("canvas:"+1).emit("delete", id)
     // Delete it from canvas
+    prisma.eraser.del
   })
   socket.on("trash", () => {
     socket.to("canvas:"+1).emit("trash")
