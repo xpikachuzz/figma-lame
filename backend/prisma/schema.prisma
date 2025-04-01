@@ -48,5 +48,5 @@ model CanvasStage {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:Kirat2008@db-instance.railway.app:5432/figma"
 }
