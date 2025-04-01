@@ -105,7 +105,6 @@ const Canvas = () => {
     if (e.ctrlKey && e.key === "z") handleUndo(); // Ctrl + Z for Undo
   };
 
-
   return (
     <div onKeyDown={handleKeyDown} style={{ textAlign: "center" }}>
       {/* Toolbar */}
