@@ -85,6 +85,7 @@ io.on("connect", (socket) => {
   socket.on("trash", () => {
     socket.to("canvas:"+1).emit("trash")
   })
+  console.log(process.env.DATABASE_URL)
 })
 
 
