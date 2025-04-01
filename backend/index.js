@@ -7,7 +7,7 @@ const cors = require('cors');
 const { Server } = require("socket.io");
 const { PrismaClient } = require("@prisma/client");
 
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 
