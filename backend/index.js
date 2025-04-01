@@ -36,11 +36,11 @@ io.on("connect", (socket) => {
   socket.on("leave_canvas", (room) => {
     socket.leave(room)
   })
-  socket.on("new_brush", (line) => {
+  socket.on("new_brush", async (line) => {
     socket.to("canvas:"+1).emit("draw", line)
     // Save it to the psql
     if (line.tool == "pen") {
-      prisma.brush.create({
+      await prisma.brush.create({
         data: {
           id: line.id,
           points: line.points,
