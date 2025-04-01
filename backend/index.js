@@ -49,6 +49,7 @@ io.on("connect", (socket) => {
           canvasStageId: 1
         }
       })
+      console.log("BRUSH")
     } if (line.tool == "arrow") {
       prisma.brush.create({
         data: {
@@ -61,6 +62,7 @@ io.on("connect", (socket) => {
           canvasStageId: 1
         }
       })
+      console.log("ARROW")
     } if (line.tool == "eraser") {
       prisma.eraser.create({
         data: {
@@ -71,7 +73,9 @@ io.on("connect", (socket) => {
           canvasStageId: 1
         }
       })
+      console.log("ERASER")
     }
+    console.log(line)
   })
   socket.on("delete", (id) => {
     socket.to("canvas:"+1).emit("delete", id)
